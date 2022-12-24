@@ -42,16 +42,34 @@ class Country(models.Model):
 class EducationalInstitution(models.Model):
     title = models.CharField(
         verbose_name='ei title',
-        unique=True,
+        unique=False,
         blank=True,
         null=True,
-        primary_key=True,
     )
-    city = models.ManyToManyField(City)
-    country = models.ManyToManyField(Country)
+    ei_index = models.SmallAutoField()
+    city = models.ManyToManyField(City, null=True, blank=True)
+    country = models.ManyToManyField(Country, null=True, blank=True)
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        db_table = 'blog_educationalinstitutions'
+        verbose_name = 'educational institution'
+        verbose_name_plural = 'educational institutions'
+
+
+class School(models.Model):
+    name = models.CharField(
+        verbose_name='school',
+        unique=False,
+    )
+    school_index = models.SmallAutoField()
+    city = models.ManyToManyField(City, null=True, blank=True)
+    country = models.ManyToManyField(Country, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
 
     class Meta:
         db_table = 'blog_educationalinstitutions'
@@ -79,6 +97,9 @@ class Teacher(models.Model):
         blank=True,
         null=True,
     )
+    city = models.ManyToManyField(City, null=True, blank=True)
+    country = models.ManyToManyField(Country, null=True, blank=True)
+    education = models.ManyToManyField(EducationalInstitution, null=True, blank=True)
 
     def __str__(self):
         return self.passport
