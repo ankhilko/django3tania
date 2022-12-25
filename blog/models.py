@@ -65,8 +65,8 @@ class EducationalInstitution(models.Model):
         null=True,
     )
     ei_index = models.SmallAutoField()
-    city = models.ManyToManyField(City, null=True, blank=True)
-    country = models.ManyToManyField(Country, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True)
+    country = models.ForeignKey(Country, null=True, blank=True)
 
     def __str__(self):
         return self.title
@@ -83,16 +83,16 @@ class School(models.Model):
         unique=False,
     )
     school_index = models.SmallAutoField()
-    city = models.ManyToManyField(City, null=True, blank=True)
-    country = models.ManyToManyField(Country, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True)
+    country = models.ForeignKey(Country, null=True, blank=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        db_table = 'blog_educationalinstitutions'
-        verbose_name = 'educational institution'
-        verbose_name_plural = 'educational institutions'
+        db_table = 'blog_schools'
+        verbose_name = 'school'
+        verbose_name_plural = 'schools'
 
 
 class Teacher(models.Model):
@@ -117,8 +117,8 @@ class Teacher(models.Model):
     )
     teacher_index = models.SmallAutoField()
 
-    city = models.ManyToManyField(City, null=True, blank=True)
-    country = models.ManyToManyField(Country, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True)
+    country = models.ForeignKey(Country, null=True, blank=True)
     education = models.ManyToManyField(EducationalInstitution, null=True, blank=True)
 
     def __str__(self):
@@ -152,9 +152,9 @@ class Student(models.Model):
     )
     student_index = models.SmallAutoField()
 
-    city = models.ManyToManyField(City, null=True, blank=True)
-    country = models.ManyToManyField(Country, null=True, blank=True)
-    school = models.ManyToManyField(School, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True)
+    country = models.ForeignKey(Country, null=True, blank=True)
+    school = models.ForeignKey(School, null=True, blank=True)
 
     def __str__(self):
         return self.student_index
