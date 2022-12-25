@@ -3,6 +3,24 @@ from django.db import models
 # Create your models here.
 
 
+class Subject(models.Model):
+    name = models.CharField(
+        max_length=100,
+        unique=True,
+        blank=True,
+        null=True,
+        primary_key=True,
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        db_table = 'blog_subjects'
+        verbose_name = 'subject'
+        verbose_name_plural = 'subjects'
+
+
 class City(models.Model):
     name = models.CharField(
         max_length=100,
@@ -80,7 +98,7 @@ class School(models.Model):
 class Teacher(models.Model):
 
     first_name = models.CharField(
-        verbose_name='first name',
+        verbose_name='name',
         unique=False,
         blank=True,
         null=True,
@@ -97,12 +115,14 @@ class Teacher(models.Model):
         blank=True,
         null=True,
     )
+    teacher_index = models.SmallAutoField()
+
     city = models.ManyToManyField(City, null=True, blank=True)
     country = models.ManyToManyField(Country, null=True, blank=True)
     education = models.ManyToManyField(EducationalInstitution, null=True, blank=True)
 
     def __str__(self):
-        return self.passport
+        return self.teacher_index
 
     class Meta:
         db_table = 'blog_teachers'
@@ -111,11 +131,38 @@ class Teacher(models.Model):
 
 
 class Student(models.Model):
-    pass
 
+    first_name = models.CharField(
+        verbose_name='name',
+        unique=False,
+        blank=True,
+        null=True,
+    )
+    family_name = models.CharField(
+        verbose_name='family name',
+        unique=False,
+        blank=True,
+        null=True,
+    )
+    passport = models.CharField(
+        verbose_name='student passport',
+        unique=True,
+        blank=True,
+        null=True,
+    )
+    student_index = models.SmallAutoField()
 
-class Subject(models.Model):
-    pass
+    city = models.ManyToManyField(City, null=True, blank=True)
+    country = models.ManyToManyField(Country, null=True, blank=True)
+    school = models.ManyToManyField(School, null=True, blank=True)
+
+    def __str__(self):
+        return self.student_index
+
+    class Meta:
+        db_table = 'blog_students'
+        verbose_name = 'student'
+        verbose_name_plural = 'students'
 
 
 class Schedule(models.Model):
