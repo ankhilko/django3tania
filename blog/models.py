@@ -97,7 +97,7 @@ class School(models.Model):
         verbose_name_plural = 'schools'
 
 
-class Teacher(models.Model):
+class People(models.Model):
 
     first_name = models.CharField(
         max_length=100,
@@ -115,19 +115,22 @@ class Teacher(models.Model):
     )
     passport = models.CharField(
         max_length=15,
-        verbose_name='teachers passport',
+        verbose_name='passport',
         unique=True,
         blank=True,
         null=True,
     )
-    # teacher_index = models.SmallAutoField()
 
     city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
     country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
-    education = models.ForeignKey(EducationalInstitution, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.teacher_index
+        return self.family_name + ' ' + self.first_name
+
+
+class Teacher(People):
+
+    education = models.ForeignKey(EducationalInstitution, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'blog_teachers'
@@ -135,37 +138,9 @@ class Teacher(models.Model):
         verbose_name_plural = 'teachers'
 
 
-class Student(models.Model):
+class Student(People):
 
-    first_name = models.CharField(
-        max_length=100,
-        verbose_name='name',
-        unique=False,
-        blank=True,
-        null=True,
-    )
-    family_name = models.CharField(
-        max_length=100,
-        verbose_name='family name',
-        unique=False,
-        blank=True,
-        null=True,
-    )
-    passport = models.CharField(
-        max_length=15,
-        verbose_name='student passport',
-        unique=True,
-        blank=True,
-        null=True,
-    )
-    # student_index = models.SmallAutoField()
-
-    city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
-    country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
     school = models.ForeignKey(School, null=True, blank=True, on_delete=models.DO_NOTHING)
-
-    def __str__(self):
-        return self.student_index
 
     class Meta:
         db_table = 'blog_students'
