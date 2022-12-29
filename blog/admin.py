@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from models import *
+from .models import *
 
 
 @admin.register(Subject)
@@ -39,10 +39,10 @@ class EducationalInstitutionAdmin(admin.ModelAdmin):
 
 @admin.register(School)
 class SchoolAdmin(admin.ModelAdmin):
-    list_display = ('title', 'city', 'country')
-    list_filter = ('title', 'city', 'country')
-    ordering = ('title', 'city', 'country')
-    search_fields = ('title', 'city', 'country')
+    list_display = ('name', 'city', 'country')
+    list_filter = ('name', 'city', 'country')
+    ordering = ('name', 'city', 'country')
+    search_fields = ('name', 'city', 'country')
 
 
 @admin.register(Teacher)
@@ -50,7 +50,7 @@ class TeacherAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'family_name', 'passport', 'city', 'country', 'education')
     list_filter = ('first_name', 'family_name', 'city', 'country', 'education')
     ordering = ('family_name', 'city', 'country', 'education')
-    search_fields = ('first_name', 'family_name', 'city', 'country', 'education')
+    search_fields = ('family_name', 'city', 'country', 'education')
 
 
 @admin.register(Student)
@@ -58,6 +58,6 @@ class StudentAdmin(admin.ModelAdmin):
     list_display = ('first_name', 'family_name', 'passport', 'city', 'country', 'school')
     list_filter = ('first_name', 'family_name', 'city', 'country', 'school')
     ordering = ('family_name', 'city', 'country', 'school')
-    search_fields = ('first_name', 'family_name', 'city', 'country', 'school')
+    search_fields = ('family_name', 'city', 'country', 'school')
 
 

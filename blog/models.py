@@ -7,8 +7,8 @@ class Subject(models.Model):
     name = models.CharField(
         max_length=100,
         unique=True,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         primary_key=True,
     )
 
@@ -25,8 +25,8 @@ class City(models.Model):
     name = models.CharField(
         max_length=100,
         unique=True,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         primary_key=True,
     )
 
@@ -43,8 +43,8 @@ class Country(models.Model):
     name = models.CharField(
         max_length=100,
         unique=True,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         primary_key=True,
     )
 
@@ -59,14 +59,15 @@ class Country(models.Model):
 
 class EducationalInstitution(models.Model):
     title = models.CharField(
-        verbose_name='ei title',
+        max_length=100,
+        verbose_name='title',
         unique=False,
         blank=True,
         null=True,
     )
-    ei_index = models.SmallAutoField()
-    city = models.ForeignKey(City, null=True, blank=True)
-    country = models.ForeignKey(Country, null=True, blank=True)
+    # ei_index = models.SmallAutoField()
+    city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
+    country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.title
@@ -79,12 +80,13 @@ class EducationalInstitution(models.Model):
 
 class School(models.Model):
     name = models.CharField(
+        max_length=100,
         verbose_name='school',
         unique=False,
     )
-    school_index = models.SmallAutoField()
-    city = models.ForeignKey(City, null=True, blank=True)
-    country = models.ForeignKey(Country, null=True, blank=True)
+    # school_index = models.SmallAutoField()
+    city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
+    country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.name
@@ -98,28 +100,31 @@ class School(models.Model):
 class Teacher(models.Model):
 
     first_name = models.CharField(
+        max_length=100,
         verbose_name='name',
         unique=False,
         blank=True,
         null=True,
     )
     family_name = models.CharField(
+        max_length=100,
         verbose_name='family name',
         unique=False,
         blank=True,
         null=True,
     )
     passport = models.CharField(
+        max_length=15,
         verbose_name='teachers passport',
         unique=True,
         blank=True,
         null=True,
     )
-    teacher_index = models.SmallAutoField()
+    # teacher_index = models.SmallAutoField()
 
-    city = models.ForeignKey(City, null=True, blank=True)
-    country = models.ForeignKey(Country, null=True, blank=True)
-    education = models.ManyToManyField(EducationalInstitution, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
+    country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
+    education = models.ForeignKey(EducationalInstitution, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.teacher_index
@@ -133,28 +138,31 @@ class Teacher(models.Model):
 class Student(models.Model):
 
     first_name = models.CharField(
+        max_length=100,
         verbose_name='name',
         unique=False,
         blank=True,
         null=True,
     )
     family_name = models.CharField(
+        max_length=100,
         verbose_name='family name',
         unique=False,
         blank=True,
         null=True,
     )
     passport = models.CharField(
+        max_length=15,
         verbose_name='student passport',
         unique=True,
         blank=True,
         null=True,
     )
-    student_index = models.SmallAutoField()
+    # student_index = models.SmallAutoField()
 
-    city = models.ForeignKey(City, null=True, blank=True)
-    country = models.ForeignKey(Country, null=True, blank=True)
-    school = models.ForeignKey(School, null=True, blank=True)
+    city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
+    country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
+    school = models.ForeignKey(School, null=True, blank=True, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return self.student_index
