@@ -1,0 +1,14 @@
+{%  extends 'blog/body.html' %}
+
+{% load static %}
+{% csrf_token %}
+
+{% block title %}
+    TITLE of the main page
+{% endblock %}
+
+{% block context %}
+    <div>
+        <p>This is a context block</p>
+    </div>
+{% endblock %}

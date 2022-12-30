@@ -1,0 +1,25 @@
+{%  extends 'blog/body.html' %}
+
+{% load static %}
+{% csrf_token %}
+
+{% block title %}
+    List of Students
+{% endblock %}
+
+{% block context %}
+    <div>
+    {% if students %}
+        {% for person in students %}
+            <p>This is a context block for object {{ person }}:</p>
+            <p>{% if person.passport %}Passport No: {{ person.passport }}{% endif %}</p>
+            <p>{% if person.city %}city {{ person.city }}, {{ person.country }}{% endif %}</p>
+            <p>{% if person.school %}School: {{ person.school }}{% endif %}</p>
+            <p>{% if person.education %}School: {{ person.education }}{% endif %}</p>
+            <p>{% if person.mobile_number %}Mobile phone number: {{ person.mobile_number }}{% endif %}</p>
+        {% endfor %}
+        {% else %}
+        <p>This is a context block for empty object</p>
+    {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{%  extends 'blog/body.html' %}
+
+{% load static %}
+{% csrf_token %}
+
+{% block title %}
+    List of Subjects
+{% endblock %}
+
+{% block context %}
+    <div>
+    {% for subject in subjects %}
+
+        <p>This is a context block for object {{ subject }}</p>
+    {% endfor %}
+    </div>
+{% endblock %}
