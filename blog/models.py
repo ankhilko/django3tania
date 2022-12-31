@@ -100,6 +100,19 @@ class School(models.Model):
 
 class People(models.Model):
 
+    username = models.CharField(
+        max_length=100,
+        verbose_name='username',
+        unique=True,
+        blank=False,
+        null=False,
+    )
+    email = models.EmailField(
+        verbose_name='email',
+        unique=True,
+        blank=False,
+        null=False,
+    )
     first_name = models.CharField(
         max_length=100,
         verbose_name='name',
