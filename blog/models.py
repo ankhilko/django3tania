@@ -141,6 +141,12 @@ class People(models.Model):
         blank=True,
         null=True,
     )
+    picture = models.ImageField(
+        verbose_name='profile picture',
+        upload_to='profile_pictures',
+        blank=True,
+        null=True,
+    )
 
     city = models.ForeignKey(City, null=True, blank=True, on_delete=models.DO_NOTHING)
     country = models.ForeignKey(Country, null=True, blank=True, on_delete=models.DO_NOTHING)
