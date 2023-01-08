@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+
 {% csrf_token %}
 
 {% block title %}
@@ -6,46 +7,25 @@
 {% endblock %}
 
 {% block content %}
-		<div class="row">
-			<div class="col-md-12">
-				<div class="row">
-					<div class="col-md-12">
-						<h3>
-							h3. Lorem ipsum dolor sit amet.
-						</h3>
-						<p>
-							Lorem ipsum dolor sit amet, <br>
-                            <strong>consectetur adipiscing elit</strong>. <br><br>
-
-                            Aliquam eget sapien sapien. <br><br>
-
-                            Curabitur in metus urna. <br><br>
-
-                            In hac habitasse platea dictumst. <br><br>
-
-                            Phasellus eu sem sapien, sed vestibulum velit. <br><br>
-
-                            Nam purus nibh, lacinia non faucibus et, pharetra in dolor. <br><br>
-
-                            Sed iaculis posuere diam ut cursus. <br><br>
-
-                            <em>Morbi commodo sodales nisi id sodales. <br>
-                            Proin consectetur, <br>
-                            nisi id commodo imperdiet, <br>
-                            metus nunc consequat lectus, <br>
-                            id bibendum diam velit et dui.</em> <br><br>
-
-                            Proin massa magna, vulputate nec bibendum nec, posuere nec lacus. <br><br>
-
-                            <small>Aliquam mi erat, <br>
-                            aliquam vel luctus eu, <br>
-                            pharetra quis elit. <br>
-                            Nulla euismod ultrices massa, <br>
-                            et feugiat ipsum consequat eu.</small>
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-		
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>
+                        We let students find teachers easily.
+                    </h5>
+                    <h6>
+                        This web-site lets connect students and teachers.<br>
+                        Currenty we support following subjects:<br>
+                        <ul>
+                            <li class="list-item">
+                                <a class="nav-link" href={% url 'subjects' %}>Check out the full list of subjects</a>
+                            </li>
+                        </ul>
+                    </h6>
+                    <a class="nav-link" href={% url 'subjects' %}>You are welcome to register and use our service for free</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

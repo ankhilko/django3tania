@@ -154,6 +154,11 @@ class People(models.Model):
     def __str__(self):
         return self.family_name + ', ' + self.first_name
 
+    class Meta:
+        db_table = 'blog_people'
+        verbose_name = 'person'
+        verbose_name_plural = 'people'
+
 
 class Teacher(People):
 

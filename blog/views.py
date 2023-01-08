@@ -41,6 +41,13 @@ class TeacherListView(ListView):
     context_object_name = 'teachers'
 
 
+class PeopleListView(ListView):
+    template_name = 'blog/teachers.html'
+    model = Teacher
+    context_object_name = 'teachers'
+
+
+
 
 # class ProductListView(LoginRequiredMixin, ListView):
 #     login_url = '/signin/'
