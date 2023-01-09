@@ -41,7 +41,7 @@ class TeacherListView(ListView):
     context_object_name = 'teachers'
 
 
-class PeopleListView(ListView):
+class PersonListView(ListView):
     template_name = 'blog/userprofile.html'
     model = Teacher
     context_object_name = 'userprofile'
