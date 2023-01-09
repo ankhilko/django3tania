@@ -42,9 +42,9 @@ class TeacherListView(ListView):
 
 
 class PeopleListView(ListView):
-    template_name = 'blog/teachers.html'
+    template_name = 'blog/userprofile.html'
     model = Teacher
-    context_object_name = 'teachers'
+    context_object_name = 'userprofile'
 
 
 

@@ -1,9 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% csrf_token %}
+
 {% block pagetitle %}
-    Personal page. {{ username }}.
+    Personal page. {{ user.username }}.
 {% endblock %}
 
 {% block title %}
-    Personal page. {{ username }}.
+    Personal page. {{ user.username }}.
 {% endblock %}
 
 {% block content %}
@@ -59,7 +63,7 @@
                 <div class="col-md-2">
                     <img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg">
                     <p>
-                        profile picture, <strong>{{ username }}</strong>.
+                        profile picture, <strong>{{ user.username }}</strong>.
                     </p>
                 </div>
             </div>

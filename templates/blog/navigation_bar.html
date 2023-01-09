@@ -17,9 +17,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href={% url 'subjects' %}>Subjects</a>
                     </li>
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href={% url 'index' %}>Home</a>
+                        <a class="nav-link" href={% url 'userprofile' %}>{{ user.username }}</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link disabled" href="#">Messages</a>
                     </li>
