@@ -1,7 +1,8 @@
+{% csrf_token %}
 
 {% block plannertitle %}
     <div class="row justify-content-center">
-        <h4>Calendar {{ username }}</h4>
+        <h4>Calendar {{ user.username }}</h4>
     </div>
 {% endblock %}
 
